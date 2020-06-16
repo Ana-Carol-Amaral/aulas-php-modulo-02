@@ -6,7 +6,7 @@ class Pessoa
 
     public function __construct()
     {
-        $this->salario = 1.500;
+        $this->salario = 500;
     }
 
     function calculaSalario(int $ajuste)
