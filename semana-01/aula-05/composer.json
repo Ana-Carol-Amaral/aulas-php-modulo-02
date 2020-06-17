@@ -1,0 +1,13 @@
+{
+    "name": "carol-amaral/aula-05",
+    "description": "Projeto sobre PHP",
+    "authors": [
+        {
+            "name": "Ana Carolina",
+            "email": "acarolina.anajo@teste.com"
+        }
+    ],
+    "require": {
+        "monolog/monolog": "1.0.*"
+    }
+}
