@@ -1,0 +1,49 @@
+*{
+    font-family: 'MuseoModerno', cursive;
+    box-sizing: border-box;
+    margin: 0 auto;
+    padding: 0;
+    margin-top: 5px;
+    background-color: black;
+}
+
+.max-width{
+    max-width: 1000px;
+    width: 100%;
+}
+
+.frm{
+    outline: none;
+    padding: 10px;
+    width: 100%;
+    color: rgb(88, 86, 86);;
+    background-color: white;
+    border: none;
+}
+
+.frm:active{
+    color: white;
+}
+
+::placeholder{
+    color: rgb(88, 86, 86);
+}
+
+.btn{
+    padding: 8px 40px;
+    margin: 10px 0;
+    border: none;
+    background-color: white;
+    color: black;
+    cursor: pointer;
+    transition: .5s;
+    float: right;
+}
+
+.btn:hover{
+    background-color: rgb(111, 170, 238);
+}
+
+.btn:active{
+    background-color: rgba(2, 119, 253, 0.863);
+}
