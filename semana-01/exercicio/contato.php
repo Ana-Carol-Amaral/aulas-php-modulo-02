@@ -15,7 +15,16 @@ $assunto = filter_input(INPUT_POST, 'txtAssunto', FILTER_SANITIZE_STRING);
 
 $mensagem = filter_input(INPUT_POST, 'txtMessage', FILTER_SANITIZE_STRING);
 
+$valido = validar($nome, $email, $telefone, $assunto, $mensagem);
+
+function validar($nome, $email, $telefone, $assunto, $mensagem)
+{
+
+}
+
 ?>
+
+
 
 <!DOCTYPE html>
 <html lang="en">
