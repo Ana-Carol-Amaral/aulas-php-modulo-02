@@ -12,33 +12,29 @@ $assunto = filter_input(INPUT_POST, 'txtAssunto', FILTER_SANITIZE_STRING);
 
 $mensagem = filter_input(INPUT_POST, 'txtMessage', FILTER_SANITIZE_STRING);
 
+
 $valido = validar($nome, $email, $telefone, $assunto, $mensagem);
+
 
 function validar($nome, $email, $telefone, $assunto, $mensagem)
 {
     if($nome = "" || $nome < 3 || $nome > 50){
-        echo "Nome inválido! No min 3 e no máx 50.";
+        //echo "Nome inválido! No min 3 e no máx 50.";
     } else{
-        echo "Nome válido!";
+        //echo "Nome válido!";
     }
-
-    if($email){
-
-    } 
-
-    if($telefone){
-
-    } 
 
     if($assunto == '1' || $assunto == '2' || $assunto == '3' || $assunto == '4'){
-        echo "Assunto válido!";
+        //echo "Assunto válido!";
     } else{
-        echo "Assunto inválido! Por favor, escolha uma das opções.";
+        //echo "Assunto inválido! Por favor, escolha uma das opções.";
     }
 
-    if($mensagem = "" || $mensagem < '10'){
-        echo "Insira uma mensagem de, pelo menos, 10 caracteres!";
+    if($mensagem = "" || $mensagem < 10){
+        //echo "Insira uma mensagem de, pelo menos, 10 caracteres!";
     }
+
+    return true;
 }
 
 ?>
@@ -52,18 +48,27 @@ function validar($nome, $email, $telefone, $assunto, $mensagem)
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contato</title>
-    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-    <?php if ($valido) : ?>
+    <?php if ($valido) : 
 
-        <p><?=$nome?></p>
-        <p><?=$email?></p>
-        <p><?=$telefone?></p>
-        <p><?=$assunto?></p>
-        <p><?=$mensagem?></p>
+        if ($assunto == 1) {
+            $a = 'comercial';
+        }elseif ($assunto == 2){
+            $a = 'dúvidas';
+        }elseif ($assunto == 3){
+            $a = 'parcerias';
+        }elseif ($assunto == 4){
+            $a = 'outros';
+        }
+    ?>        
+        <p>Nome: <?php echo $nome; ?></p>
+        <p>Email: <?php echo $email; ?></p>
+        <p>Telefone: <?php echo $telefone; ?></p>
+        <p>Assunto: <?php echo $a; ?></p>
+        <p>Mensagem: <?php echo $mensagem; ?></p>
 
     <?php else : ?>
 
