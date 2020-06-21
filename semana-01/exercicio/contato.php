@@ -76,18 +76,16 @@ function getAssunto($code)
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contato</title>
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=MuseoModerno:wght@500&display=swap" rel="stylesheet">
 </head>
 
 <body>
     <div class="max-width">
         <h1>Contato</h1>
         <br>
-        <br>
         <?php if ($valido) : ?>
             <p>Olá, <span><?= $nome; ?></span>, recebemos sua mensagem, em breve, um de nossos atendentes irá responde-lo.</p>
-            <br>
             <hr>
-            <br>
             <br>
             <p><span>Nome: </span><?= $dados->nome; ?></p>
             <br>
