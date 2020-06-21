@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,6 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=MuseoModerno:wght@500&display=swap" rel="stylesheet">
 </head>
 <body>
+    <h1 class="max-width color grid-100">Contato</h1>
     <form class="max-width" action="contato.php" method="post" id="frmCadastro">
         <!--ROW NAME and EMAIL-->
         <div class="grid-50 mobile-grid-100">

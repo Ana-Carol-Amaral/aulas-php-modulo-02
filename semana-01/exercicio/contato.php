@@ -1,45 +1,72 @@
 <?php
 
-$valido = false;
+$dados = getInput();
+$nome= null;
 
-$nome = filter_input(INPUT_POST, 'txtNome', FILTER_SANITIZE_STRING);
+$valido = validate($dados);
 
-$email = filter_input(INPUT_POST, 'txtEmail', FILTER_SANITIZE_STRING);
+if ($valido) {
+    $ex = explode(' ', $dados->nome);
+    $nome = $ex[0];
+}
 
-$telefone = filter_input(INPUT_POST, 'txtFone', FILTER_SANITIZE_STRING);
-
-$assunto = filter_input(INPUT_POST, 'txtAssunto', FILTER_SANITIZE_STRING);
-
-$mensagem = filter_input(INPUT_POST, 'txtMessage', FILTER_SANITIZE_STRING);
-
-
-$valido = validar($nome, $email, $telefone, $assunto, $mensagem);
-
-
-function validar($nome, $email, $telefone, $assunto, $mensagem)
+function getInput()
 {
-    if($nome = "" || $nome < 3 || $nome > 50){
-        //echo "Nome inválido! No min 3 e no máx 50.";
-    } else{
-        //echo "Nome válido!";
+    return (object) [
+        'nome' => filter_input(INPUT_POST, 'txtNome', FILTER_SANITIZE_STRING),
+        'email' => filter_input(INPUT_POST, 'txtEmail', FILTER_SANITIZE_EMAIL),
+        'fone' => filter_input(INPUT_POST, 'txtFone', FILTER_SANITIZE_STRING),
+        'assunto' => filter_input(INPUT_POST, 'txtAssunto', FILTER_SANITIZE_NUMBER_INT),
+        'mensagem' => filter_input(INPUT_POST, 'txtMessage', FILTER_SANITIZE_STRING)
+    ];
+}
+
+function validate($dados)
+{
+    if(strlen($dados->nome) == " " || strlen($dados->nome) < 2){
+        return false;
     }
 
-    if($assunto == '1' || $assunto == '2' || $assunto == '3' || $assunto == '4'){
-        //echo "Assunto válido!";
-    } else{
-        //echo "Assunto inválido! Por favor, escolha uma das opções.";
+    if(strlen($dados->email) == " " || strlen($dados->email) < 6 || strpos($dados->email, '@') <= 0 || strpos($dados->email, '.') <= 0){
+        return false;
     }
 
-    if($mensagem = "" || $mensagem < 10){
-        //echo "Insira uma mensagem de, pelo menos, 10 caracteres!";
+    if(strlen($dados->fone) == " " || strlen($dados->fone) < 14){
+        return false;
+    }
+
+    if(strlen($dados->assunto) == " " || $dados->assunto < 1 || $dados->assuntos > 4){
+        return false;
+    }
+
+    if(strlen($dados->mensagem) == " " || strlen($dados->mensagem) < 10 || strlen($dados->mensagem) > 500){
+        return false;
     }
 
     return true;
 }
 
+$code = $dados->assunto;
+
+function getAssunto($code)
+{
+    switch ($code) {
+        case 1:
+            echo 'Comercial';
+        break;
+        case 2:
+            echo 'Dúvidas';
+        break;
+        case 3:
+            echo 'Parcerias';
+        break;
+        case 4:
+            echo 'Outros';
+        break;
+    }
+}
+
 ?>
-
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -48,33 +75,28 @@ function validar($nome, $email, $telefone, $assunto, $mensagem)
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contato</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
+    <div class="max-width">
+        <h1>Contato</h1>
+        <?php if ($valido) : ?>
+            <p>Olá, <span><?= $nome; ?></span>, recebemos sua mensagem, em breve, um de nossos atendenetes irá responde-lo.</p>
 
-    <?php if ($valido) : 
+            <hr>
 
-        if ($assunto == 1) {
-            $a = 'comercial';
-        }elseif ($assunto == 2){
-            $a = 'dúvidas';
-        }elseif ($assunto == 3){
-            $a = 'parcerias';
-        }elseif ($assunto == 4){
-            $a = 'outros';
-        }
-    ?>        
-        <p>Nome: <?php echo $nome; ?></p>
-        <p>Email: <?php echo $email; ?></p>
-        <p>Telefone: <?php echo $telefone; ?></p>
-        <p>Assunto: <?php echo $a; ?></p>
-        <p>Mensagem: <?php echo $mensagem; ?></p>
+            <p><span>Nome: </span><?= $dados->nome; ?></p>
+            <p><span>E-mail: </span><?= $dados->email; ?></p>
+            <p><span>Telefone: </span><?= $dados->fone; ?></p>
+            <p><span>Assunto: </span><?= getAssunto($dados->assunto); ?></p>
+            <p><span>Mensagem: </span></p>
+            <p><?= $dados->mensagem ?></p>
 
-    <?php else : ?>
-
-        <p>Inválido</p>
-
-    <?php endif; ?>
+        <?php else : ?>
+            <p>Formulário inválido</p>
+        <?php endif; ?>
+    </div>
 </body>
 
 </html>
