@@ -81,15 +81,22 @@ function getAssunto($code)
 <body>
     <div class="max-width">
         <h1>Contato</h1>
+        <br>
+        <br>
         <?php if ($valido) : ?>
-            <p>Olá, <span><?= $nome; ?></span>, recebemos sua mensagem, em breve, um de nossos atendenetes irá responde-lo.</p>
-
+            <p>Olá, <span><?= $nome; ?></span>, recebemos sua mensagem, em breve, um de nossos atendentes irá responde-lo.</p>
+            <br>
             <hr>
-
+            <br>
+            <br>
             <p><span>Nome: </span><?= $dados->nome; ?></p>
+            <br>
             <p><span>E-mail: </span><?= $dados->email; ?></p>
+            <br>
             <p><span>Telefone: </span><?= $dados->fone; ?></p>
+            <br>
             <p><span>Assunto: </span><?= getAssunto($dados->assunto); ?></p>
+            <br>
             <p><span>Mensagem: </span></p>
             <p><?= $dados->mensagem ?></p>
 
